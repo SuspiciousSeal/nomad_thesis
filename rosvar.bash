@@ -14,7 +14,7 @@ IP=`ip route get $TARGET_IP | head -n 1 | sed "s/.*src \(\S*\) .*/\1/"`
 
 echo -e "${GREEN}using $1 ($TARGET_IP) via $IP${NORMAL}"
 
-source /home/robert/23s-robert-rtech/devel/.private/catkin_tools_prebuild/setup.bash
+source ./catkin_ws/devel/setup.bash
 export ROS_MASTER_URI=http://$TARGET_IP:11311
 export ROS_HOSTNAME=$IP
 export ROS_IP=$IP
