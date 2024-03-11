@@ -1,0 +1,16 @@
+#!/usr/bin/expect -f
+
+# if not working
+# sudo apt-get install expect
+
+# get the IP of our device we'll use to conect to the host
+set TARGET_IP 192.168.1.170
+
+spawn ssh jackal@$TARGET_IP
+expect "password:"
+sleep 1
+send "clearpath\r"
+sleep 1
+puts "test"
+send "export ROS_IP=$TARGET_IP\r"
+send "echo \$ROS_IP\r"

@@ -1,3 +1,28 @@
 [submodule "visualnav-transformer"]
 	path = visualnav-transformer
 	url = git@github.com:SuspiciousSeal/visualnav-transformer.git
+	branch = main
+[submodule "catkin_ws/src/ecl_core"]
+	path = catkin_ws/src/ecl_core
+	url = git@github.com:stonier/ecl_core.git
+	branch = release/0.62-noetic
+[submodule "catkin_ws/src/yujin_ocs"]
+	path = catkin_ws/src/yujin_ocs
+	url = git@github.com:yujinrobot/yujin_ocs.git
+	branch = release/0.8-melodic
+[submodule "catkin_ws/src/yocs_msgs"]
+	path = catkin_ws/src/yocs_msgs
+	url = git@github.com:yujinrobot/yocs_msgs.git
+	branch = release/0.7-melodic
+[submodule "catkin_ws/src/ecl_lite"]
+	path = catkin_ws/src/ecl_lite
+	url = git@github.com:stonier/ecl_lite.git
+	branch = release/0.61-noetic
+[submodule "catkin_ws/src/ecl_tools"]
+	path = catkin_ws/src/ecl_tools
+	url = git@github.com:stonier/ecl_tools.git
+	branch = release/0.61-noetic
+[submodule "catkin_ws/src/ar_track_alvar"]
+	path = catkin_ws/src/ar_track_alvar
+	url = git@github.com:ros-perception/ar_track_alvar.git
+	branch = noetic-devel
