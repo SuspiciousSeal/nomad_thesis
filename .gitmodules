@@ -36,3 +36,6 @@
 [submodule "catkin_ws/src/sick_scan"]
 	path = catkin_ws/src/sick_scan
 	url = git@github.com:SICKAG/sick_scan.git
+[submodule "tools/jackal-map-creation"]
+	path = tools/jackal-map-creation
+	url = git@github.com:SuspiciousSeal/jackal-map-creation.git

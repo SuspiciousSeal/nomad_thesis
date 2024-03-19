@@ -1,13 +1,16 @@
 <launch>
+  <arg name="source" default="camera"/>
+  <param name="server_source" type="str" value="$(arg source)" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find depth_safety_layer)/config/fw_depth_test.rviz" />
   <node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" 
         args="image:=/camera/depth/image_rect_raw scan:=depthscan output_frame_id:=camera_link" />
-  <node pkg="laserscan_range" type="rangefinder" name="rangefinder"  output="screen"/>
+  <node pkg="depth_safety_layer" type="rangefinder" name="rangefinder"  output="screen"/>
   <!-- make transform for laser -->
   <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster"      args="0.15 0 0 0 0 0 camera_link laser 100" />
   <!-- make transform for ranges -->
   <node pkg="tf" type="static_transform_publisher" name="rangemid_broadcaster"   args="0 0 0 0 0 0 camera_link Range_mid 100" />
   <node pkg="tf" type="static_transform_publisher" name="rangeleft_broadcaster"  args="0 0 0 -0.436332 0 0 camera_link Range_left 100" />
   <node pkg="tf" type="static_transform_publisher" name="rangeright_broadcaster" args="0 0 0  0.436332 0 0 camera_link Range_right 100" />
-  <node pkg="rosbag" type="play" name="player" output="screen" args="-q --loop --clock $(find laserscan_range)/../bags/lidar-depthcam-2022-03-30-12-29-36.bag"/>
 
 </launch>

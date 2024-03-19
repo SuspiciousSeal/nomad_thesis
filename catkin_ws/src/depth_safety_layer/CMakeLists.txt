@@ -206,3 +206,6 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(rangefinder src/rangefinder.cpp)
+target_link_libraries(rangefinder ${catkin_LIBRARIES})
