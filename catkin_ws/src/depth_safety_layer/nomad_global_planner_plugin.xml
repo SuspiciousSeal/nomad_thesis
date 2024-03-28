@@ -1,0 +1,5 @@
+ <library path="lib/libnomad_global_planner">
+  <class name="global_planner/NomadGlobalPlanner" type="global_planner::NomadGlobalPlanner" base_class_type="nav_core::BaseGlobalPlanner">
+    <description>This is a global planner plugin by Robert Allik.</description>
+  </class>
+ </library>
