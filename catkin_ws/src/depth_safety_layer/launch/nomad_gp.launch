@@ -11,7 +11,7 @@
   <rosparam file="$(find jackal_navigation)/params/base_local_planner_params.yaml" command="load" />
   <rosparam file="$(find jackal_navigation)/params/move_base_params.yaml" command="load" />
 
-  <param name="base_global_planner" type="string" value="depth_safety_layer/nomad_global_planner" />
+  <param name="base_global_planner" type="string" value="global_planner/NomadGlobalPlanner" />
   <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
 
   <remap from="odom" to="odometry/filtered" />
