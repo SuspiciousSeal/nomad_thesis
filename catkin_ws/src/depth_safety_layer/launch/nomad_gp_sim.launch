@@ -6,9 +6,9 @@
   <!-- <param name="robot_description" command="$(find xacro)/xacro.py '$(find jackal_description)/urdf/jackal.urdf.xacro'" /> -->
 
   <!-- <node name="static_3d_lidar_frame_publisher" pkg="tf" type="static_transform_publisher" args="0.05 0 0 0 0 0 base_link front_laser 50"/> -->
-  <include file="$(find sick_scan)/launch/sick_tim_5xx.launch">
+  <!-- <include file="$(find sick_scan)/launch/sick_tim_5xx.launch">
     <arg name="frame_id" value="front_laser" />
-  </include>
+  </include> -->
 
  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
