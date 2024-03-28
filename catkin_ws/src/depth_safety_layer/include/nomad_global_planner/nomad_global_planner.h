@@ -35,6 +35,7 @@ protected:
   ros::NodeHandle n;
   ros::Subscriber waypoints_sub;
 	ros::Subscriber eached_goal_sub;
+  ros::Publisher  path_pub;
   void waypoints_to_path(const std_msgs::Float32MultiArray& msg);
   };
 };
