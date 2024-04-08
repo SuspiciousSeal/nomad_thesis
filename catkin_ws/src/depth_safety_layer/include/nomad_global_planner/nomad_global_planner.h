@@ -9,12 +9,15 @@
 #include <base_local_planner/world_model.h>
 #include <base_local_planner/costmap_model.h>
 #include "std_msgs/Float32MultiArray.h"
+#include <move_base_msgs/MoveBaseAction.h>
+#include <actionlib/client/simple_action_client.h>
 
 using std::string;
 
 #ifndef GLOBAL_PLANNER_CPP
 #define GLOBAL_PLANNER_CPP
 
+typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 namespace global_planner {
 
 class NomadGlobalPlanner : public nav_core::BaseGlobalPlanner {
@@ -36,6 +39,7 @@ protected:
   ros::Subscriber waypoints_sub;
 	ros::Subscriber eached_goal_sub;
   ros::Publisher  path_pub;
+  MoveBaseClient* ac;
   void waypoints_to_path(const std_msgs::Float32MultiArray& msg);
   };
 };

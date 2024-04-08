@@ -72,7 +72,14 @@ NomadGlobalPlanner::NomadGlobalPlanner(std::string name, costmap_2d::Costmap2DRO
 void NomadGlobalPlanner::initialize(std::string name, costmap_2d::Costmap2DROS* costmap_ros){
   waypoints_sub = n.subscribe("nomad_dummy", 10, &NomadGlobalPlanner::waypoints_to_path, this);
   path_pub = n.advertise<nav_msgs::Path>("nomad_path", 1);
+  ac = new MoveBaseClient("my_client", false);
 }
+
+/* TODO< 
+1. try with predefined paths as output
+2. need a way for the global planner to set the plan itself
+
+*/
 void NomadGlobalPlanner::waypoints_to_path(const std_msgs::Float32MultiArray& msg){
   ROS_INFO("nomad_planner got waypoints");
   static uint32_t seq = 0;
@@ -89,9 +96,28 @@ void NomadGlobalPlanner::waypoints_to_path(const std_msgs::Float32MultiArray& ms
   }
   path_pub.publish(path_out);
 
+  move_base_msgs::MoveBaseGoal goal;
+  goal.target_pose.header.frame_id = "base_link";
+  goal.target_pose.header.stamp = ros::Time::now();
+
+  goal.target_pose.pose.position.x = msg.data[0];
+  goal.target_pose.pose.position.y = msg.data[1];
+  goal.target_pose.pose.orientation.w = 1.0;
+
+  ROS_INFO("Sending goal");
+  ac->sendGoal(goal);
+
+  ac->waitForResult();
+
+  if(ac->getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+    ROS_INFO("Hooray, the base moved");
+  else
+    ROS_INFO("The base failed to move");
+
 }
 
 bool NomadGlobalPlanner::makePlan(const geometry_msgs::PoseStamped& start, const geometry_msgs::PoseStamped& goal,  std::vector<geometry_msgs::PoseStamped>& plan ){
+  ROS_INFO("Making plan");
 
   plan.push_back(start);
   static uint32_t seq = 0;
