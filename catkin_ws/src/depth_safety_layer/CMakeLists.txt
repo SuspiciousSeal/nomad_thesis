@@ -218,3 +218,5 @@ catkin_install_python(PROGRAMS
 add_executable(nomad_to_path src/nomad_to_path.cpp)
 target_link_libraries(nomad_to_path ${catkin_LIBRARIES})
 add_library(nomad_global_planner src/nomad_global_planner.cpp)
+add_executable(nomad_goal_sender src/nomad_goal_sender.cpp)
+target_link_libraries(nomad_goal_sender ${catkin_LIBRARIES})
