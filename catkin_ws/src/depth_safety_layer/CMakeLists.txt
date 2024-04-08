@@ -210,6 +210,7 @@ include_directories(
 
 catkin_install_python(PROGRAMS
   src/nomad_dummy.py
+  src/nomad_wp_to_goal.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

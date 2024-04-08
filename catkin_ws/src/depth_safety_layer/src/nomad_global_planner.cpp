@@ -70,8 +70,9 @@ NomadGlobalPlanner::NomadGlobalPlanner(std::string name, costmap_2d::Costmap2DRO
 
 
 void NomadGlobalPlanner::initialize(std::string name, costmap_2d::Costmap2DROS* costmap_ros){
-  waypoints_sub = n.subscribe("nomad_dummy", 10, &NomadGlobalPlanner::waypoints_to_path, this);
-  path_pub = n.advertise<nav_msgs::Path>("nomad_path", 1);
+  // waypoints_sub = n.subscribe("nomad_dummy", 10, &NomadGlobalPlanner::waypoints_to_path, this);
+  // path_pub = n.advertise<nav_msgs::Path>("nomad_path", 1);
+  // goal_pub = n.advertise<geometry_msgs::PoseStamped>("move_base_simple/goal", 1);
   ac = new MoveBaseClient("my_client", false);
 }
 
@@ -91,35 +92,40 @@ void NomadGlobalPlanner::waypoints_to_path(const std_msgs::Float32MultiArray& ms
     geometry_msgs::PoseStamped pose;
     pose.pose.position.x= msg.data[i]; 
     pose.pose.position.y= msg.data[i+1]; 
-    ROS_INFO("[%f,%f]", pose.pose.position.x, pose.pose.position.y);
+    pose.pose.orientation.w = 1; 
+    // ROS_INFO("point [%f,%f]", pose.pose.position.x, pose.pose.position.y);
     path_out.poses.push_back(pose);
   }
   path_pub.publish(path_out);
 
-  move_base_msgs::MoveBaseGoal goal;
-  goal.target_pose.header.frame_id = "base_link";
-  goal.target_pose.header.stamp = ros::Time::now();
+  geometry_msgs::PoseStamped goal;
+  goal.header.frame_id = "base_link";
+  goal.header.stamp = ros::Time::now();
 
-  goal.target_pose.pose.position.x = msg.data[0];
-  goal.target_pose.pose.position.y = msg.data[1];
-  goal.target_pose.pose.orientation.w = 1.0;
+  // ROS_INFO("setting goal x%f y%f", msg.data[0], msg.data[1]);
+  goal.pose.position.x = msg.data[0];
+  goal.pose.position.y = msg.data[1];
+  goal.pose.orientation.w = 1.0;
 
-  ROS_INFO("Sending goal");
-  ac->sendGoal(goal);
+  ROS_INFO("Sending goal x%f y%f", goal.pose.position.x, goal.pose.position.y);
+  // ac->sendGoal(goal);
+  goal_pub.publish(goal);
 
-  ac->waitForResult();
+  // ac->waitForResult();
 
-  if(ac->getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-    ROS_INFO("Hooray, the base moved");
-  else
-    ROS_INFO("The base failed to move");
+  // if(ac->getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+  //   ROS_INFO("Hooray, the base moved");
+  // else
+  //   ROS_INFO("The base failed to move");
+  waypoints_sub.shutdown();
 
 }
 
 bool NomadGlobalPlanner::makePlan(const geometry_msgs::PoseStamped& start, const geometry_msgs::PoseStamped& goal,  std::vector<geometry_msgs::PoseStamped>& plan ){
-  ROS_INFO("Making plan");
-
+  ROS_INFO("Making plan, goal x%f y%f", goal.pose.position.x, goal.pose.position.y);
+  // waypoints_sub.shutdown();
   plan.push_back(start);
+  plan.push_back(goal);
   static uint32_t seq = 0;
   // nav_msgs::Path path_out;
   // path_out.header.frame_id = "odom";//??? TODO: make 
@@ -133,6 +139,7 @@ bool NomadGlobalPlanner::makePlan(const geometry_msgs::PoseStamped& start, const
   // }
   // path_pub.publish(path_out);
   // plan.push_back(goal);
+  // waypoints_sub = n.subscribe("nomad_dummy", 10, &NomadGlobalPlanner::waypoints_to_path, this);
   return true;
 }
 };
