@@ -18,7 +18,7 @@ tmux send-keys "roslaunch vint_jackal_remote.launch" Enter
 # Run the navigate.py script with command line args in the second pane
 tmux select-pane -t 1
 tmux send-keys "export ROS_IP=192.168.1.170" Enter
-tmux send-keys "roslaunch sick_scan sick_tim_5xx.launch" Enter
+tmux send-keys 'roslaunch sick_scan sick_tim_5xx.launch frame_id:="front_laser"' Enter
 
 tmux select-pane -t 0
 # Attach to the tmux session
