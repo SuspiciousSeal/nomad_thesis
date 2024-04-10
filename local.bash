@@ -17,18 +17,18 @@ tmux selectp -t 0    # go back to the first pane
 
 # Run the roslaunch command in the first pane
 tmux select-pane -t 0
-tmux send-keys "export ROS_IP=192.168.1.170" Enter
+tmux send-keys "source rosvar.bash" Enter
 tmux send-keys "roslaunch realsense2_camera rs_camera.launch initial_reset:=true enable_depth:=false" Enter
 
 # Run the navigate.py script with command line args in the second pane
 tmux select-pane -t 1
-tmux send-keys "export ROS_IP=192.168.1.170" Enter
-tmux send-keys 'roslaunch sick_scan sick_tim_5xx.launch frame_id:="front_laser"' Enter
+tmux send-keys "source rosvar.bash" Enter
+tmux send-keys 'roslaunch depth_safety_layer lidar.launch frame_id:="front_laser"' Enter
 
 # Run the teleop.py script in the third pane
 tmux select-pane -t 2
 # tmux send-keys "conda activate vint_deployment" Enter
-# tmux send-keys "source ../rosvar.bash" Enter
+# tmux send-keys "source rosvar.bash" Enter
 # tmux send-keys "roslaunch jackal_viz view_robot.launch config:=navigation" Enter
 
 # Run the pd_controller.py script in the fourth pane

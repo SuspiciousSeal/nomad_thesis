@@ -122,7 +122,7 @@ void NomadGlobalPlanner::waypoints_to_path(const std_msgs::Float32MultiArray& ms
 }
 
 bool NomadGlobalPlanner::makePlan(const geometry_msgs::PoseStamped& start, const geometry_msgs::PoseStamped& goal,  std::vector<geometry_msgs::PoseStamped>& plan ){
-  ROS_INFO("Making plan, goal x%f y%f", goal.pose.position.x, goal.pose.position.y);
+  ROS_INFO("Making plan, goal x%f y%f w%f, frame id:%s", goal.pose.position.x, goal.pose.position.y, goal.pose.orientation.w, goal.header.frame_id.c_str());
   // waypoints_sub.shutdown();
   plan.push_back(start);
   plan.push_back(goal);

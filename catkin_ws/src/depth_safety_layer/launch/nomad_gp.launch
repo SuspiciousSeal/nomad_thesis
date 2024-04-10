@@ -1,6 +1,6 @@
 <launch>
-  <!-- <arg name="config" default="base" />
-  <include file="$(find jackal_description)/launch/description.launch">
+  <!-- <arg name="config" default="base" /> -->
+  <!-- <include file="$(find jackal_description)/launch/description.launch">
     <arg name="config" value="front_laser" />
   </include> -->
   <!-- <param name="robot_description" command="$(find xacro)/xacro.py '$(find jackal_description)/urdf/jackal.urdf.xacro'" /> -->
@@ -9,7 +9,7 @@
   <!-- <include file="$(find sick_scan)/launch/sick_tim_5xx.launch">
     <arg name="frame_id" value="front_laser" />
   </include> -->
- <node name="nomad_wp_to_goal" pkg="depth_safety_layer" type="nomad_wp_to_goal.py" />
+ <node name="nomad_goal_sender" pkg="depth_safety_layer" type="nomad_goal_sender" />
  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
   <rosparam file="$(find jackal_navigation)/params/costmap_common_params.yaml" command="load" ns="global_costmap" />
@@ -26,6 +26,6 @@
 
   <remap from="odom" to="odometry/filtered" />
  </node>
-  <node name="static_3d_lidar_frame_publisher" pkg="tf" type="static_transform_publisher" args="0 0 0.1 0 0 3.14 front_mount front_laser 100"/>
+  <!-- <node name="static_3d_lidar_frame_publisher" pkg="tf" type="static_transform_publisher" args="0 0 0.1 0 0 3.14 front_mount front_laser 100"/> -->
 
 </launch>
