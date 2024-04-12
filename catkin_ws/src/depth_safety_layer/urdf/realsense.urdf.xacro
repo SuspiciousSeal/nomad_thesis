@@ -1,0 +1,75 @@
+
+<!-- <?xml version="1.0"?> -->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>
+
+  
+
+  <link name="bot_structure">
+		<visual>
+		    <origin xyz="-0.09 0 -0.075 " rpy="0 0 0"/>
+          <axis xyz="0 0 0" />
+			<geometry>
+				<box size="0.26 0.15 0.12"/>
+			</geometry>
+			<material name="c">
+	       		<color rgba="0 0.9 0.9 1.0"/>
+	     	</material>
+		</visual>	
+    <child link="chassis_link" />
+	</link>
+  <joint type="fixed" name="c1_joint">
+    <origin xyz="0.1 0 0.135" rpy="0 0 0" />
+    <parent link="rear_mount" />
+    <child link="bot_structure" />
+  </joint>
+  <link name="top_structure">
+		<visual>
+		    <origin xyz="0 0 0" rpy="0 0 0"/>
+          <axis xyz="0 0 0" />
+			<geometry>
+				<box size="0.44 0.15 0.03"/>
+			</geometry>
+			<material name="c">
+	       		<color rgba="0 0.9 0.9 1.0"/>
+	     	</material>
+		</visual>	
+    <child link="bot_structure" />
+	</link>
+  <joint type="fixed" name="c2_joint">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="bot_structure" />
+    <child link="top_structure" />
+  </joint>
+
+  <link name="camera_link">
+    <visual>
+      <origin xyz="0.02 0 0" rpy="${pi/2} 0 ${pi/2}" />
+      <geometry>
+        <mesh filename="package://realsense2_description/meshes/d435.dae" />
+      </geometry>
+      <material name="white" />
+    </visual>
+  </link>
+
+  <joint type="fixed" name="camera_link_joint">
+    <origin xyz="${0.2 - 0.035} 0 -0.03" rpy="0 0 0" />
+    <parent link="top_structure" />
+    <child link="camera_link" />
+  </joint>
+  
+  <!-- <sensor _d435 parent="camera_link_joint">
+    <origin xyz= "0 0 0" rpy="0 0 0"/>
+  </sensor _d435> -->
+  <xacro:include filename="$(find sick_scan)/urdf/sick_scan.urdf.xacro"/>
+
+  <xacro:sick_tim_5xx name="laser" ros_topic="scan" />
+  <joint name="laser_mount_link_joint" type="fixed">
+    <origin xyz="0.1 0 -0.025" rpy="0 3.14 3.14"/>
+    <parent link="top_structure"/>
+    <child link="laser_mount_link"/>
+  </joint>
+
+
+</robot>
