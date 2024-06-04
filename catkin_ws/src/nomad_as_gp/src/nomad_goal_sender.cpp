@@ -28,30 +28,9 @@ void mySigintHandler(int sig)
 }
 
 void send_goal(const std_msgs::Float32MultiArray& msg){
-  // geometry_msgs::PoseStamped goal;
-  // goal.header.frame_id = "camera_link";
-  // goal.header.stamp = ros::Time::now();
-  // try{
-  //   // tf::StampedTransform transform;
-  //   // listener.lookupTransform("/odom", "/camera_link", ros::Time(0), transform);
-  //   // ROS_INFO("setting goal x%f y%f", msg.data[0], msg.data[1]);
-  //   goal.pose.position.x = msg.data[0];
-  //   goal.pose.position.y = msg.data[1];
-  //   goal.pose.orientation.w = 1.0;
-
-  //   ROS_INFO("Sending goal x%f y%f", goal.pose.position.x, goal.pose.position.y);
-  //   // ac->sendGoal(goal);
-  //   pub.publish(goal);
-
-  // } catch(...){
-  //   ROS_INFO("goal error");
-
-  // }
-
   move_base_msgs::MoveBaseGoal goal;
 
   //we'll send a goal to the robot to move 1 meter forward
-  // goal.target_pose.header.frame_id = "base_link";
   goal.target_pose.header.frame_id = "camera_link";
   goal.target_pose.header.stamp = ros::Time::now();
 
@@ -61,14 +40,6 @@ void send_goal(const std_msgs::Float32MultiArray& msg){
 
   ROS_INFO("Sending goal");
   ac->sendGoal(goal);
-
-  // ac->waitForResult(ros::Duration(10, 0));
-
-  // if(ac->getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-  //   ROS_INFO("Hooray, the base moved 0.2 meter forward");
-  // else
-  //   ROS_INFO("The base failed to move forward 0.2 meter for some reason");
-
 }
 
 int main(int argc, char **argv)
@@ -90,7 +61,6 @@ int main(int argc, char **argv)
    while(!ac->waitForServer(ros::Duration(5.0))){
     ROS_INFO("Waiting for the move_base action server to come up");
   }
-
 
   ros::spin();
   return 0;

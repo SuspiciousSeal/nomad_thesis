@@ -2,10 +2,10 @@
   <arg name="source" default="camera"/>
   <param name="server_source" type="str" value="$(arg source)" />
 
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find depth_safety_layer)/config/fw_depth_test.rviz" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find nomad_as_gp)/config/fw_depth_test.rviz" />
   <node name="depthimage_to_laserscan" pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" 
         args="image:=/camera/depth/image_rect_raw scan:=depthscan output_frame_id:=camera_link" />
-  <node pkg="depth_safety_layer" type="rangefinder" name="rangefinder"  output="screen"/>
+  <node pkg="nomad_as_gp" type="rangefinder" name="rangefinder"  output="screen"/>
   <!-- make transform for laser -->
   <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster"      args="0.15 0 0 0 0 0 camera_link laser 100" />
   <!-- make transform for ranges -->

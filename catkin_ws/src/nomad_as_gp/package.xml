@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>depth_safety_layer</name>
+  <name>nomad_as_gp</name>
   <version>0.0.0</version>
-  <description>The depth_safety_layer package</description>
+  <description>The nomad_as_gp package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/depth_safety_layer</url> -->
+  <!-- <url type="website">http://wiki.ros.org/nomad_as_gp</url> -->
 
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->

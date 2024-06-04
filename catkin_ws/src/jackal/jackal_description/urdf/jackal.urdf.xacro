@@ -268,7 +268,7 @@
   <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />
 
   <!-- Optional for Clearpath internal softwares -->
-  <xacro:include filename="$(find depth_safety_layer)/urdf/realsense.urdf.xacro" />
+  <xacro:include filename="$(find nomad_as_gp)/urdf/realsense.urdf.xacro" />
   <xacro:include filename="$(optenv CPR_URDF_EXTRAS empty.urdf)" />
 
 </robot>

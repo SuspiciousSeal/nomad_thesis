@@ -17,7 +17,6 @@ using std::string;
 #ifndef GLOBAL_PLANNER_CPP
 #define GLOBAL_PLANNER_CPP
 
-typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 namespace global_planner {
 
 class NomadGlobalPlanner : public nav_core::BaseGlobalPlanner {
@@ -36,13 +35,6 @@ public:
 
 protected:
   ros::NodeHandle n;
-  ros::Subscriber waypoints_sub;
-	ros::Subscriber eached_goal_sub;
-  ros::Subscriber  path_sub;
-  ros::Publisher  path_pub;
-  ros::Publisher  goal_pub;
-  MoveBaseClient* ac;
-  void waypoints_to_path(const std_msgs::Float32MultiArray& msg);
   };
 };
 #endif

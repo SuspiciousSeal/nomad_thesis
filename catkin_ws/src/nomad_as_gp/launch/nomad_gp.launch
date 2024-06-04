@@ -9,7 +9,7 @@
   <!-- <include file="$(find sick_scan)/launch/sick_tim_5xx.launch">
     <arg name="frame_id" value="front_laser" />
   </include> -->
- <node name="nomad_goal_sender" pkg="depth_safety_layer" type="nomad_goal_sender" />
+ <node name="nomad_goal_sender" pkg="nomad_as_gp" type="nomad_goal_sender" />
  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
 
   <rosparam file="$(find jackal_navigation)/params/costmap_common_params.yaml" command="load" ns="global_costmap" />

@@ -23,7 +23,7 @@ tmux send-keys "roslaunch realsense2_camera rs_camera.launch initial_reset:=true
 # Run the navigate.py script with command line args in the second pane
 tmux select-pane -t 1
 tmux send-keys "source rosvar.bash" Enter
-tmux send-keys 'roslaunch depth_safety_layer lidar.launch frame_id:="front_laser"' Enter
+tmux send-keys 'roslaunch nomad_as_gp lidar.launch frame_id:="front_laser"' Enter
 
 # Run the teleop.py script in the third pane
 tmux select-pane -t 2
@@ -36,7 +36,7 @@ tmux select-pane -t 3
 # tmux send-keys "roslaunch jackal_navigation odom_navigation_demo.launch" Enter
 tmux send-keys "cd ~/nomad_thesis" Enter
 tmux send-keys "source rosvar.bash" Enter
-tmux send-keys "roslaunch depth_safety_layer nomad_gp.launch" Enter
+tmux send-keys "roslaunch nomad_as_gp nomad_gp.launch" Enter
 
 # Attach to the tmux session
 tmux -2 attach-session -t $session_name

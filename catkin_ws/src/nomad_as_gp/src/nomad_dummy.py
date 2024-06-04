@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+"""
+This is a test program emulating NoMaD without having to actually run it.
+
+This just publishes the predefined sequence of waypoints.
+
+"""
+
 import rospy
 from sensor_msgs.msg import Image
 from std_msgs.msg import Float32MultiArray
@@ -17,14 +24,7 @@ def talker():
     msg.data = [0.3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     print("sending data", msg.data)
     pub.publish(msg)
-    # msg2 = PoseStamped()
-    # msg2.header.frame_id = "base_link"
-    # msg2.header.stamp = rospy.Time.now()
-    # msg2.pose.position.x = 1
-    # msg2.pose.position.y = 1
-    # msg2.pose.orientation.w = 1
-    
-    # goal_pub.publish(msg2)
+
     rate.sleep()
     # rospy.signal_shutdown("end")
   

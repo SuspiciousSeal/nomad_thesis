@@ -35,7 +35,7 @@ tmux send-keys "roslaunch jackal_viz view_robot.launch config:=navigation" Enter
 tmux select-pane -t 3
 # tmux send-keys "roslaunch jackal_navigation odom_navigation_demo.launch" Enter
 tmux send-keys "source ~/nomad_thesis/catkin_ws/devel/setup.bash" Enter
-tmux send-keys "roslaunch depth_safety_layer nomad_gp_sim.launch" Enter
+tmux send-keys "roslaunch nomad_as_gp nomad_gp_sim.launch" Enter
 
 # Attach to the tmux session
 tmux -2 attach-session -t $session_name

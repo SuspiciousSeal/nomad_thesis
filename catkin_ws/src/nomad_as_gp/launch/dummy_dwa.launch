@@ -3,7 +3,7 @@
 
   <node name="dwa_planner" pkg="dwa_planner" type="dwa_planner" 
         args="image:=/camera/depth/image_rect_raw scan:=depthscan output_frame_id:=camera_link" />
-  <node pkg="depth_safety_layer" type="rangefinder" name="rangefinder"  output="screen"/>
+  <node pkg="nomad_as_gp" type="rangefinder" name="rangefinder"  output="screen"/>
   <!-- make transform for laser -->
   <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster"      args="0.15 0 0 0 0 0 camera_link laser 100" />
   <!-- make transform for ranges -->

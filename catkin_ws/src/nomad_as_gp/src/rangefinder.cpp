@@ -5,6 +5,11 @@
 #include "tf2/LinearMath/Matrix3x3.h"
 #include "math.h"
 
+/*
+This program was used to test the LiDAR.
+
+*/
+
 ros::Publisher depth_centre_pub;
 ros::Publisher depth_left_pub;
 ros::Publisher depth_right_pub;
